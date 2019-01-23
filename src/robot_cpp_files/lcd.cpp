@@ -64,11 +64,11 @@ void lcd_control() {
     pros::lcd::print(0, "AUTONOMOUS SELECTION");
     pros::lcd::print(1, "AUTO : [%s]", auto_names[selected_auto]);
     pros::lcd::print(2, "<< MOTOR TEMPS || SENSOR VALUES >>");
-    pros::lcd::print(3, "                                                                                           ");
-    pros::lcd::print(4, "                                                                                           ");
-    pros::lcd::print(5, "                                                                                           ");
-    pros::lcd::print(6, "                                                                                           ");
-    pros::lcd::print(7, "                                                                                           ");
+    pros::lcd::print(3, "                                              ");
+    pros::lcd::print(4, "                                              ");
+    pros::lcd::print(5, "                                              ");
+    pros::lcd::print(6, "                                              ");
+    pros::lcd::print(7, "                                              ");
   }
   else if (page == SENSOR_VALUES) {
     pros::lcd::print(0, "SENSOR VALUES");
@@ -79,8 +79,8 @@ void lcd_control() {
 		pros::lcd::print(5, "drive encoder value : [%d]", chassis.right_pos());
     pros::lcd::print(6, "light : [%d]", light.get_value());
     pros::lcd::print(7, "<< AUTO SELECTION || MOTOR TEMPS >>");
-    pros::lcd::print(8, "                                                                                           ");
-    pros::lcd::print(9, "                                                                                           ");
+    pros::lcd::print(8, "                                              ");
+    pros::lcd::print(9, "                                              ");
   }
   else if (page == MOTOR_TEMPS) {
     pros::lcd::print(0, "MOTOR TEMPURATURES");
