@@ -87,7 +87,7 @@ Auto_Function Chassis::PID_drive(int target, int max_power) {
     case 0 :
     //set default values//
     reset_drive_sensors(true);
-    drive_pid.set_pid_vars(target, 15, true, 9);
+    drive_pid.set_pid_vars(target, 15, 9);
     gyro_error = 0;
     return_state = INCOMPLETE;
     //reset timers//
@@ -137,7 +137,7 @@ Auto_Function Chassis::PID_turn(int target, int max_power) {
     case 0 :
     //set default values//
     reset_drive_sensors(true);
-    turn_pid.set_pid_vars(target, 11, true, 5);
+    turn_pid.set_pid_vars(target, 11, 5);
     return_state = INCOMPLETE;
     //reset timers/
     resetTimer(TURN_PID_EXIT);

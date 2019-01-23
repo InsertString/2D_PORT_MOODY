@@ -5,7 +5,8 @@ class PID {
 public:
   PID();
   void set_Constants(double p, double i, double d);
-  void set_pid_vars(int targ, int int_limit, bool cont_int, int const_integral_val);
+  void set_pid_vars(int targ, int int_limit, int const_integral_val);
+  void set_pid_vars(int targ, int int_limit);
 
   double kp;
   double ki;

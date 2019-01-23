@@ -1,6 +1,8 @@
 #include "main.h"
 #include "robot_includes/pid.h"
 
+
+
 PID::PID() {
   kp = 0;
   ki = 0;
@@ -19,7 +21,10 @@ PID::PID() {
 
 
 
-
+//set PID constants
+//@param value for constant P
+//@param value for constant I
+//@param value for constant D
 void PID::set_Constants(double p, double i, double d) {
   kp = p;
   ki = i;
@@ -29,12 +34,24 @@ void PID::set_Constants(double p, double i, double d) {
 
 
 
-
-void PID::set_pid_vars(int targ, int int_limit, bool const_int, int const_integral_val) {
+//sets default values for PID
+//@param value for the target of the PID
+void PID::set_pid_vars(int targ, int int_limit, int const_integral_val) {
+  const_integral = true;
   target = targ;
-  if (const_int == true) {
-    const_integral_value = const_integral_val;
-  }
+  const_integral_value = const_integral_val;
+  integral_limit = int_limit;
+}
+
+
+
+
+//sets default values for PID
+//@param value for the target of the PID
+void PID::set_pid_vars(int targ, int int_limit) {
+  const_integral = false;
+  target = targ;
+  const_integral_value = 0;
   integral_limit = int_limit;
 }
 
