@@ -61,5 +61,4 @@ void Lift_Systems::drive() {
   else if (flipper_state == DOWN) {
     flipper.move_absolute(0, 200);
   }
-
 }

@@ -38,16 +38,14 @@ void initialize() {
 	pros::lcd::initialize();
 	cat.set_brake_mode(MOTOR_BRAKE_COAST);
 	intake.set_brake_mode(MOTOR_BRAKE_COAST);
-
-	//drive_RF.set_brake_mode(MOTOR_BRAKE_BRAKE);
-	//drive_LF.set_brake_mode(MOTOR_BRAKE_BRAKE);
 	drive_RB.set_brake_mode(MOTOR_BRAKE_BRAKE);
 	drive_LB.set_brake_mode(MOTOR_BRAKE_BRAKE);
-
 	flipper.set_brake_mode(MOTOR_BRAKE_BRAKE);
 	cBar.set_brake_mode(MOTOR_BRAKE_BRAKE);
 	selected_auto = 0;
 	reset_auto_variables();
+	cBar.tare_position();
+	flipper.tare_position();
 }
 
 void disabled() {}
