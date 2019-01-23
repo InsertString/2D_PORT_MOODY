@@ -20,6 +20,7 @@ pros::Motor drive_RF(RIGHT_FRONT_MOTOR);
 pros::Motor drive_LB(LEFT_BACK_MOTOR);
 pros::Motor drive_RB(RIGHT_BACK_MOTOR);
 pros::ADIGyro gyro(C);
+pros::ADIAnalogIn light(E);
 
 pros::Motor cat(CATAPULT_MOTOR);
 pros::Motor intake(INTAKE_MOTOR);

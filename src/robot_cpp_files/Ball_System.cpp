@@ -83,7 +83,7 @@ void Ball_System::setCatPosition() {
 
 
 
-
+int intake_state;
 
 Auto_Function Ball_System::shoot() {
   Auto_Function return_state = INCOMPLETE;
@@ -147,7 +147,7 @@ void Ball_System::drive() {
     setCatpower(0);
   }
 
-
+  /*
   if (master.get_digital(DIGITAL_L1) && cat_pot.get_value() > 1200) {
     setIntakePower(127);
   }
@@ -155,6 +155,37 @@ void Ball_System::drive() {
     setIntakePower(-127);
   }
   else {
+    setIntakePower(0);
+  }
+  */
+
+  if (master.get_digital_new_press(DIGITAL_L1)) {
+    intake_state = 1;
+  }
+  else if (master.get_digital(DIGITAL_L2)) {
+    intake_state = 2;
+  }
+  else if (intake_state != 1 && !master.get_digital(DIGITAL_L2)) {
+    intake_state = 0;
+  }
+
+
+
+  if (intake_state == 1) {
+    if (master.get_digital(DIGITAL_L1)) {
+      setIntakePower(127);
+    }
+    else if (light.get_value() > 2200) {
+      setIntakePower(127);
+    }
+    else if (light.get_value() < 2200) {
+      setIntakePower(0);
+    }
+  }
+  else if (intake_state == 2) {
+    setIntakePower(-127);
+  }
+  else if (intake_state == 0) {
     setIntakePower(0);
   }
 

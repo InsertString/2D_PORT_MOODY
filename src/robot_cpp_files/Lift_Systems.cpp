@@ -11,7 +11,7 @@
 
 #define SCORING -1850
 #define LIFTING -4150
-#define GRABBING -280
+#define GRABBING -300
 
 Lift_Systems::Lift_Systems() {
   curr_system = FLIPPER;
@@ -50,62 +50,16 @@ int Lift_Systems::button_pressed() {
 
 
 void Lift_Systems::drive() {
-
-  if (master.get_digital_new_press(DIGITAL_A)) {
-    curr_system = FLIPPER;
-  }
-  else if (master.get_digital_new_press(DIGITAL_B)) {
-    curr_system = CHAINBAR;
+  if (master.get_digital_new_press(DIGITAL_R2)) {
+    if (flipper_state == UP) flipper_state = DOWN;
+    else if (flipper_state == DOWN) flipper_state = UP;
   }
 
-  switch (button_pressed()) {
-    case UP :
-    if (curr_system == CHAINBAR) {
-      setCBarPower(127);
-    }
-    else if (curr_system == FLIPPER) {
-      setFlipperPower(127);
-      flipper_state = UP;
-    }
-    break;
-    case LEFT :
-    if (curr_system == CHAINBAR) {
-      cBar.move_absolute(LIFTING, 70);
-    }
-    else if (curr_system == FLIPPER) {
-      flipper.move_absolute(GRABBING, 200);
-    }
-    break;
-    case DOWN :
-    if (curr_system == CHAINBAR) {
-      setCBarPower(-127);
-    }
-    else if (curr_system == FLIPPER) {
-      setFlipperPower(-127);
-      flipper_state = DOWN;
-    }
-    break;
-    case RIGHT :
-    if (curr_system == CHAINBAR) {
-      cBar.move_absolute(SCORING, 200);
-    }
-    else if (curr_system == FLIPPER) {
-      setFlipperPower(0);
-    }
-    break;
-    case NONE :
-    if (curr_system == CHAINBAR) {
-      setCBarPower(0);
-    }
-    else if (curr_system == FLIPPER) {
-      if (flipper_state == UP) {
-        setFlipperPower(6);
-      }
-      else if (flipper_state == DOWN) {
-        setFlipperPower(-3);
-      }
-    }
-    break;
+  if (flipper_state == UP) {
+    flipper.move_absolute(GRABBING, 200);
+  }
+  else if (flipper_state == DOWN) {
+    flipper.move_absolute(0, 200);
   }
 
 }

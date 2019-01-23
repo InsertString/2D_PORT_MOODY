@@ -77,9 +77,10 @@ void lcd_control() {
 		pros::lcd::print(3, "flipper : [%d]", flipper.get_position());
 		pros::lcd::print(4, "gyro val :[%4.0f]", gyro.get_value());
 		pros::lcd::print(5, "drive encoder value : [%d]", chassis.right_pos());
-    pros::lcd::print(5, "<< AUTO SELECTION || MOTOR TEMPS >>");
-    pros::lcd::print(6, "                                                                                           ");
-    pros::lcd::print(7, "                                                                                           ");
+    pros::lcd::print(6, "light : [%d]", light.get_value());
+    pros::lcd::print(7, "<< AUTO SELECTION || MOTOR TEMPS >>");
+    pros::lcd::print(8, "                                                                                           ");
+    pros::lcd::print(9, "                                                                                           ");
   }
   else if (page == MOTOR_TEMPS) {
     pros::lcd::print(0, "MOTOR TEMPURATURES");

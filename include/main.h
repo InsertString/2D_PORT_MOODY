@@ -47,6 +47,7 @@ extern Lift_Systems lift;
 extern Chassis chassis;
 
 extern pros::ADIGyro gyro;
+extern pros::ADIAnalogIn light;
 
 extern int selected_auto;
 
