@@ -13,6 +13,7 @@
 #define C 3
 #define D 4
 #define E 5
+#define F 6
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 pros::Motor drive_LF(LEFT_FRONT_MOTOR);
@@ -21,6 +22,7 @@ pros::Motor drive_LB(LEFT_BACK_MOTOR);
 pros::Motor drive_RB(RIGHT_BACK_MOTOR);
 pros::ADIGyro gyro(C);
 pros::ADIAnalogIn light(E);
+pros::ADIAnalogIn light2(F);
 
 pros::Motor cat(CATAPULT_MOTOR);
 pros::Motor intake(INTAKE_MOTOR);

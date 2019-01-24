@@ -63,7 +63,7 @@ void lcd_control() {
   if (page == AUTO_SELECT) {
     pros::lcd::print(0, "AUTONOMOUS SELECTION");
     pros::lcd::print(1, "AUTO : [%s]", auto_names[selected_auto]);
-    pros::lcd::print(2, "<< MOTOR TEMPS || SENSOR VALUES >>");
+    pros::lcd::print(2, "<< SENSOR VALUES || MOTOR TEMPS >>");
     pros::lcd::print(3, "                                              ");
     pros::lcd::print(4, "                                              ");
     pros::lcd::print(5, "                                              ");
@@ -78,8 +78,8 @@ void lcd_control() {
 		pros::lcd::print(4, "gyro val :[%4.0f]", gyro.get_value());
 		pros::lcd::print(5, "drive encoder value : [%d]", chassis.right_pos());
     pros::lcd::print(6, "light : [%d]", light.get_value());
-    pros::lcd::print(7, "<< AUTO SELECTION || MOTOR TEMPS >>");
-    pros::lcd::print(8, "                                              ");
+    pros::lcd::print(7, "light 2 : [%d]", light2.get_value());
+    pros::lcd::print(8, "<< MOTOR TEMPS || AUTO SELECTION >>");
     pros::lcd::print(9, "                                              ");
   }
   else if (page == MOTOR_TEMPS) {
@@ -90,7 +90,7 @@ void lcd_control() {
     pros::lcd::print(4, "chainbar : [%2.0f]", cBar.get_temperature());
     pros::lcd::print(5, "average left drive : [%2.0f]", (drive_LF.get_temperature() + drive_LB.get_temperature())/2);
     pros::lcd::print(6, "average right drive : [%2.0f]", (drive_RF.get_temperature() + drive_RB.get_temperature())/2);
-    pros::lcd::print(7, "<< SENSOR VALUES || AUTO SELECTION >>");
+    pros::lcd::print(7, "<< AUTO SELECTION || SENSOR VALUES >>");
   }
 
   if (LCD_left_pressed()) {

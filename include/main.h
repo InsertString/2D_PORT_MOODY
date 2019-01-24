@@ -48,6 +48,7 @@ extern Chassis chassis;
 
 extern pros::ADIGyro gyro;
 extern pros::ADIAnalogIn light;
+extern pros::ADIAnalogIn light2;
 
 extern int selected_auto;
 
