@@ -11,11 +11,11 @@
 
 #define SCORING -1850
 #define LIFTING -4150
-#define GRABBING -300
+#define GRABBING -310
 
 Lift_Systems::Lift_Systems() {
   curr_system = FLIPPER;
-  flipper_state = UP;
+  flipper_state = DOWN;
 }
 
 

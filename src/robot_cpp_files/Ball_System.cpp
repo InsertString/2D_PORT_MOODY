@@ -118,24 +118,34 @@ Auto_Function Ball_System::shoot() {
 
 
 
-int a = 0;
-//int b = 0;
+int a = 1;
+int b = 1;
 void Ball_System::drive() {
   //setCatPosition();
   int power = (Cat_target - cat_pot.get_value()) * 1;
 
   if (master.get_digital_new_press(DIGITAL_R1)) {
-    a = 1;
+    a = 0;
   }
 
   if (a == 1) {
-    setCatpower(127);
-    if (cat_pot.get_value() < 1485) {
-      a = 2;
+    if (cat_pot.get_value() < 1525 && b == 1) {
+      setCatpower(power);
+    }
+    else {
+      setCatpower(0);
+      b = 0;
+      a = 1;
     }
   }
-  else if (a == 2) {
-    setCatpower(0);
+  else if (a == 0) {
+    if (cat_pot.get_value() > 700) {
+      setCatpower(127);
+    }
+    else {
+      a = 1;
+      b = 1;
+    }
   }
   /*
   if (master.get_digital(DIGITAL_R2)) {
@@ -190,10 +200,10 @@ void Ball_System::drive() {
     if (master.get_digital(DIGITAL_L1)) {
       setIntakePower(127);
     }
-    else if (light.get_value() > 2200 || light2.get_value() > 2200) {
+    else if (light.get_value() > 2500 && light2.get_value() > 2500) {
       setIntakePower(127);
     }
-    else if (light.get_value() < 2200 || light2.get_value() < 2200) {
+    else if (light.get_value() < 2500 && light2.get_value() < 2500) {
       setIntakePower(0);
     }
   }
