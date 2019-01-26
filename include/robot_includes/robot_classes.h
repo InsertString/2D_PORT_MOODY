@@ -8,6 +8,9 @@
 #define CAT_LOADING_MAX_VAL 1500
 #define CAT_LOADING_MIN_VAL 1490
 
+#define CAT_INTAKE_IN 1
+#define CAT_INTAKE_OUT 2
+
 
 enum Auto_Function {
   COMPLETE,
@@ -70,20 +73,17 @@ public:
   void setIntakePower(int power);
 
   void setCatpower(int power);
-  void setCatPosition();
-  Cat_Positions current_cat_position();
 
   Auto_Function shoot();
-  Auto_Function pull_back();
+  Auto_Function intake_ball(int direction);
+
   int shoot_step;
-  int pull_back_step;
+  int intake_ball_step;
 
   void drive();
 private:
   Cat_Positions target;
   int Cat_target;
-
-
 };
 
 #endif

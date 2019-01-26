@@ -35,6 +35,8 @@ Ball_System ball_system;
 Lift_Systems lift;
 Chassis chassis;
 
+int unloading_step;
+bool unloading;
 
 void initialize() {
 	pros::lcd::initialize();
@@ -48,6 +50,8 @@ void initialize() {
 	reset_auto_variables();
 	cBar.tare_position();
 	flipper.tare_position();
+	unloading = false;
+	unloading_step = 0;
 }
 
 void disabled() {}

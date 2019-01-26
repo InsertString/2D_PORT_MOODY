@@ -20,66 +20,10 @@ void Ball_System::setIntakePower(int power) {
 
 
 
-
-Cat_Positions Ball_System::current_cat_position() {
-  Cat_Positions return_state = IDLE;
-  if (cat_pot.get_value() < CAT_LOADING_MAX_VAL && cat_pot.get_value() > CAT_LOADING_MIN_VAL) {
-    return_state = LOAD;
-  }
-  else if (cat_pot.get_value() > CAT_LOADING_MAX_VAL) {
-    return_state = FIRE;
-  }
-  else if (cat_pot.get_value() < CAT_LOADING_MIN_VAL) {
-    return_state = IDLE;
-  }
-  else {
-    return_state = IDLE;
-  }
-  return return_state;
-}
-
-
-
 void Ball_System::setCatpower(int power) {
   cat = -power;
 }
 
-
-
-
-void Ball_System::setCatPosition() {
-  switch (target) {
-    case LOAD :
-    switch (current_cat_position()) {
-      case LOAD :
-      setCatpower(0);
-      break;
-      case IDLE :
-      setCatpower(127);
-      break;
-      case FIRE :
-      setCatpower(0);
-      break;
-    }
-    break;
-    case FIRE :
-    switch (current_cat_position()) {
-      case LOAD :
-      setCatpower(127);
-      break;
-      case IDLE :
-      setCatpower(0);
-      break;
-      case FIRE :
-      setCatpower(127);
-      break;
-    }
-    break;
-    case IDLE :
-    setCatpower(0);
-    break;
-  }
-}
 
 
 
@@ -121,7 +65,10 @@ Auto_Function Ball_System::shoot() {
 int a = 1;
 int b = 1;
 void Ball_System::drive() {
-  //setCatPosition();
+
+
+
+  //CATAPULT
   int power = (Cat_target - cat_pot.get_value()) * 1;
 
   if (master.get_digital_new_press(DIGITAL_R1)) {
@@ -147,50 +94,16 @@ void Ball_System::drive() {
       b = 1;
     }
   }
-  /*
-  if (master.get_digital(DIGITAL_R2)) {
-    setCatpower(0);
-    a = 1;
-    b = 1;
-  }
-  else if (!master.get_digital(DIGITAL_R1)) {
-    a = 2;
-    if (cat_pot.get_value() < 1485 && b == 1) {
-      setCatpower(power);
-    }
-    else {
-      setCatpower(0);
-      b = 0;
-    }
-  }
-  else if (master.get_digital(DIGITAL_R1) && cat_pot.get_value() > 1000 && a == 2) {
-    setCatpower(127);
-    b = 1;
-  }
-  else {
-    setCatpower(0);
-  }
-  */
 
-  /*
-  if (master.get_digital(DIGITAL_L1) && cat_pot.get_value() > 1200) {
-    setIntakePower(127);
-  }
-  else if (master.get_digital(DIGITAL_L2)) {
-    setIntakePower(-127);
-  }
-  else {
-    setIntakePower(0);
-  }
-  */
 
+  //INTAKE
   if (master.get_digital_new_press(DIGITAL_L1)) {
     intake_state = 1;
   }
   else if (master.get_digital(DIGITAL_L2)) {
     intake_state = 2;
   }
-  else if (intake_state != 1 && !master.get_digital(DIGITAL_L2)) {
+  else if ((intake_state != 1 && !master.get_digital(DIGITAL_L2)) || (master.get_digital(DIGITAL_R2))) {
     intake_state = 0;
   }
 
