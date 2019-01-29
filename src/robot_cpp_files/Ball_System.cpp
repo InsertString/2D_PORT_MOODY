@@ -2,13 +2,14 @@
 #include "robot_includes/robot_classes.h"
 
 
+Auto_Function t;
+
 
 
 Ball_System::Ball_System() {
   target = IDLE;
   Cat_target = 1590;
   shoot_step = 0;
-  pull_back_step = 0;
 }
 
 
@@ -97,37 +98,84 @@ void Ball_System::drive() {
 
 
   //INTAKE
-  if (master.get_digital_new_press(DIGITAL_L1)) {
-    intake_state = 1;
-  }
-  else if (master.get_digital(DIGITAL_L2)) {
-    intake_state = 2;
-  }
-  else if ((intake_state != 1 && !master.get_digital(DIGITAL_L2)) || (master.get_digital(DIGITAL_R2))) {
-    intake_state = 0;
-  }
+  if (unloading == false) {
+    unloading_step = 0;
 
 
-
-  if (intake_state == 1 && cat_pot.get_value() > 1200) {
-    if (master.get_digital(DIGITAL_L1)) {
-      setIntakePower(127);
+    if (master.get_digital_new_press(DIGITAL_L1)) {
+      intake_state = 1;
     }
-    else if (light.get_value() > 2500 && light2.get_value() > 2500) {
-      setIntakePower(127);
+    else if (master.get_digital(DIGITAL_L2)) {
+      intake_state = 2;
     }
-    else if (light.get_value() < 2500 && light2.get_value() < 2500) {
+    else if ((intake_state != 1 && !master.get_digital(DIGITAL_L2)) || (master.get_digital(DIGITAL_R2))) {
+      intake_state = 0;
+    }
+
+
+
+    if (intake_state == 1 && cat_pot.get_value() > 1200) {
+      if (master.get_digital(DIGITAL_L1)) {
+        setIntakePower(127);
+      }
+      else if (light.get_value() > 2500 && light2.get_value() > 2500) {
+        setIntakePower(127);
+      }
+      else if (light.get_value() < 2500 && light2.get_value() < 2500) {
+        setIntakePower(0);
+      }
+    }
+    else if (intake_state == 2) {
+      setIntakePower(-127);
+    }
+    else if (intake_state == 0) {
+      setIntakePower(0);
+    }
+    else {
       setIntakePower(0);
     }
   }
-  else if (intake_state == 2) {
-    setIntakePower(-127);
-  }
-  else if (intake_state == 0) {
-    setIntakePower(0);
+
+
+
+
+  if (master.get_digital(DIGITAL_DOWN)) {
+    unloading = true;
+
+    switch (unloading_step) {
+      case 0 :
+      reset_auto_variables();
+      setIntakePower(-127);
+      chassis.setLeftPower(-127);
+      chassis.setRightPower(-127);
+      if (chassis.right_pos() < 300) {
+        unloading_step++;
+        chassis.drive_step = 0;
+      }
+      break;
+      case 1 :
+      reset_auto_variables();
+      if (light.get_value() < 2500 && light2.get_value() < 2500) {
+        setIntakePower(0);
+      }
+      chassis.setLeftPower(127);
+      chassis.setRightPower(127);
+      if (chassis.right_pos() > 300) {
+        unloading_step++;
+        chassis.drive_step = 0;
+        chassis.setLeftPower(0);
+        chassis.setRightPower(0);
+      }
+      break;
+      case 2 :
+      if (light.get_value() < 2500 && light2.get_value() < 2500) {
+        setIntakePower(0);
+      }
+      break;
+    }
   }
   else {
-    setIntakePower(0);
+    unloading = false;
   }
 
 }

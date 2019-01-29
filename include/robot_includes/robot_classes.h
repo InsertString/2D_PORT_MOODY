@@ -78,7 +78,6 @@ public:
   Auto_Function intake_ball(int direction);
 
   int shoot_step;
-  int intake_ball_step;
 
   void drive();
 private:

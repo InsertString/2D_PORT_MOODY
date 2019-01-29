@@ -51,5 +51,7 @@ extern pros::ADIAnalogIn light;
 extern pros::ADIAnalogIn light2;
 
 extern int selected_auto;
+extern bool unloading;
+extern int unloading_step;
 
 #endif  // _PROS_MAIN_H_

@@ -24,7 +24,6 @@ void start_auto() {
 void reset_auto_variables() {
   chassis.reset_chassis_auto_vars();
   ball_system.shoot_step = 0;
-  ball_system.pull_back_step = 0;
   resetTimer(AUTO_STEP_TIMEOUT);
 }
 
