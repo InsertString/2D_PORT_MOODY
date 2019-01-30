@@ -58,6 +58,13 @@ void PID::set_pid_vars(int targ, int int_limit) {
 
 
 
+void PID::display_output() {
+  printf("%5d", error);
+}
+
+
+
+
 int PID::output(double current, int max_out) {
   int out;
 

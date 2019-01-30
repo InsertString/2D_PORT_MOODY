@@ -73,8 +73,8 @@ void lcd_control() {
   else if (page == SENSOR_VALUES) {
     pros::lcd::print(0, "SENSOR VALUES");
     pros::lcd::print(1, "cat_pot : [%d]", cat_pot.get_value());
-		pros::lcd::print(2, "cBar position : [%d]", cBar.get_position());
-		pros::lcd::print(3, "flipper : [%d]", flipper.get_position());
+		pros::lcd::print(2, "cBar position : [%f]", cBar.get_position());
+		pros::lcd::print(3, "flipper : [%f]", flipper.get_position());
 		pros::lcd::print(4, "gyro val :[%4.0f]", gyro.get_value());
 		pros::lcd::print(5, "drive encoder value : [%d]", chassis.right_pos());
     pros::lcd::print(6, "light : [%d]", light.get_value());

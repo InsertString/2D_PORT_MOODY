@@ -146,15 +146,17 @@ void Ball_System::drive() {
       case 0 :
       reset_auto_variables();
       setIntakePower(-127);
+      unloading_step++;
+      break;
+      case 1 :
       chassis.setLeftPower(-127);
       chassis.setRightPower(-127);
       if (chassis.right_pos() < 300) {
         unloading_step++;
-        chassis.drive_step = 0;
+        reset_auto_variables();
       }
       break;
-      case 1 :
-      reset_auto_variables();
+      case 2 :
       if (light.get_value() < 2500 && light2.get_value() < 2500) {
         setIntakePower(0);
       }
@@ -162,12 +164,11 @@ void Ball_System::drive() {
       chassis.setRightPower(127);
       if (chassis.right_pos() > 300) {
         unloading_step++;
-        chassis.drive_step = 0;
         chassis.setLeftPower(0);
         chassis.setRightPower(0);
       }
       break;
-      case 2 :
+      case 3 :
       if (light.get_value() < 2500 && light2.get_value() < 2500) {
         setIntakePower(0);
       }

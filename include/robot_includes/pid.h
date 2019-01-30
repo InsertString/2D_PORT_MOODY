@@ -7,6 +7,7 @@ public:
   void set_Constants(double p, double i, double d);
   void set_pid_vars(int targ, int int_limit, int const_integral_val);
   void set_pid_vars(int targ, int int_limit);
+  void display_output();
 
   double kp;
   double ki;

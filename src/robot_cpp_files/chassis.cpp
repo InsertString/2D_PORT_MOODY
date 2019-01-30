@@ -109,6 +109,8 @@ Auto_Function Chassis::PID_drive(int target, int max_power) {
     setLeftPower(out_L);
     setRightPower(out_R);
 
+		drive_pid.display_output();
+
     if (abs(drive_pid.error) < 100 || getTime(DRIVE_PID_TIMEOUT) > 2000) {
       if (getTime(DRIVE_PID_EXIT) > 50) drive_step++;
     }
@@ -154,6 +156,8 @@ Auto_Function Chassis::PID_turn(int target, int max_power) {
 
     setLeftPower(out_L);
     setRightPower(out_R);
+
+		turn_pid.display_output();
 
     if (abs(turn_pid.error) < 10 || getTime(TURN_PID_TIMEOUT) > 2000) {
       if (getTime(DRIVE_PID_EXIT) > 50) turn_step++;
@@ -207,6 +211,6 @@ void Chassis::drive() {
 
 	}
 	else if (unloading == true) {
-		
+
 	}
 }
