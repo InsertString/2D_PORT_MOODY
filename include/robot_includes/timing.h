@@ -12,4 +12,6 @@ void resetTimer(int timer_slot);
 
 int getTime(int timer_slot);
 
+void resetAllTimers();
+
 #endif

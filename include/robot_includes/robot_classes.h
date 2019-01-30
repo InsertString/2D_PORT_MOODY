@@ -64,6 +64,7 @@ public:
   int curr_system;
 private:
   int flipper_state;
+  int cBar_state;
 };
 
 

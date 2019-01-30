@@ -57,41 +57,57 @@ void PID::set_pid_vars(int targ, int int_limit) {
 
 
 
-
+//displays the error to terminal
 void PID::display_output() {
   printf("%5d", error);
 }
 
 
 
-
+//generates the output for the PID
+//@param value for the current value
+//@param value for the maximum output
 int PID::output(double current, int max_out) {
+
+  //temperary variable for output
   int out;
 
+  //since error has not yet been refreshed, set past_error to equal error
   past_error = error;
 
+  //refresh error
   error = target - current;
 
+  //checks for constant integral
   if (const_integral == false) {
+    //check if error is within integral limit
     if (abs(error) < integral_limit)
+      //refresh integral
       integral += error;
     else
+      //reset integral
       integral = 0;
   }
   else {
     if (error > 0)
+      //set positive integral
       integral = const_integral_value;
     else if (error < 0)
+      //set negetive integral
       integral = -const_integral_value;
   }
 
+  //set derivative
   derivative = (error - past_error) / time_interval;
 
+  //set the output
   out = (error * kp) + (integral * ki) + (derivative * kd);
 
+  //check if the output is within the maximum
   if (out > max_out) out = max_out;
   else if (out < (-max_out)) out = -max_out;
   else out = out;
 
+  //return the output
   return out;
 }
