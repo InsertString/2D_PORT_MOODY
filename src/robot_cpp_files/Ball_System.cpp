@@ -8,7 +8,7 @@ Auto_Function t;
 
 Ball_System::Ball_System() {
   target = IDLE;
-  Cat_target = 1590;
+  Cat_target = CAT_TARGET;
   shoot_step = 0;
 }
 
@@ -44,7 +44,7 @@ Auto_Function Ball_System::shoot() {
     }
     break;
     case 1 :
-    if (cat_pot.get_value() < 1485) {
+    if (cat_pot.get_value() < CAT_THRESHOLD) {
       setCatpower(127);
     }
     else {
@@ -77,7 +77,7 @@ void Ball_System::drive() {
   }
 
   if (a == 1) {
-    if (cat_pot.get_value() < 1525 && b == 1) {
+    if (cat_pot.get_value() < CAT_THRESHOLD && b == 1) {
       setCatpower(power);
     }
     else {
