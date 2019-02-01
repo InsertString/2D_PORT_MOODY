@@ -64,7 +64,7 @@ Auto_Function Ball_System::shoot() {
 
 
 int a = 1;
-int b = 1;
+int b = 0;
 void Ball_System::drive() {
 
 

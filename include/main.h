@@ -42,6 +42,8 @@ extern pros::ADIAnalogIn cat_pot;
 extern pros::Motor flipper;
 extern pros::Motor cBar;
 
+extern pros::ADIDigitalIn cBar_limit;
+
 extern Ball_System ball_system;
 extern Lift_Systems lift;
 extern Chassis chassis;

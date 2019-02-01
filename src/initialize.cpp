@@ -30,6 +30,7 @@ pros::ADIAnalogIn cat_pot(D);
 
 pros::Motor flipper(FLIPPER_MOTOR);
 pros::Motor cBar(CHAINBAR_MOTOR);
+pros::ADIDigitalIn cBar_limit(B);
 
 Ball_System ball_system;
 Lift_Systems lift;

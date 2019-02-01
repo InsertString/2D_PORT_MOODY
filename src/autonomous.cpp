@@ -1,10 +1,9 @@
 #include "main.h"
 
 void autonomous() {
-
+  start_auto();
   resetTimer(AUTO_TIMER);
   chassis.reset_chassis_auto_vars();
-  reset_auto_variables();
   while (getTime(AUTO_TIMER) < 15000) {
     //chassis.PID_turn(900, 100);
     ///*

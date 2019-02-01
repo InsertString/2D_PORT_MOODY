@@ -16,7 +16,7 @@
 Lift_Systems::Lift_Systems() {
   curr_system = FLIPPER;
   flipper_state = DOWN;
-  cBar_state = LEFT;
+  cBar_state = RIGHT;
 }
 
 
@@ -75,21 +75,13 @@ void Lift_Systems::drive() {
   }
 
   if (cBar_state == UP) {
-    if (step == 0) {
-      cBar.move_absolute(1550, 200);
-      if (cBar.get_position() >= 990) {
-      //  step++;
-      }
-    }
-    if (step == 1) {
-      cBar.move_absolute(0, 200);
-    }
+    cBar.move_absolute(1550, 200);
   }
   else if (cBar_state == LEFT) {
     cBar.move_absolute(-420, 100);
   }
   else if (cBar_state == DOWN) {
-    if (master.get_digital(DIGITAL_B)) {
+    if (cBar_limit.get_value() == false) {
       cBar = -127;
     }
     else {
