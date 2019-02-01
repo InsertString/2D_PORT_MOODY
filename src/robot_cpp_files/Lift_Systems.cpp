@@ -48,7 +48,7 @@ int Lift_Systems::button_pressed() {
   return rv;
 }
 
-
+int step;
 
 void Lift_Systems::drive() {
   if (master.get_digital_new_press(DIGITAL_R2)) {
@@ -64,25 +64,38 @@ void Lift_Systems::drive() {
   }
 
   if (master.get_digital_new_press(DIGITAL_X)) {
-    cBar = UP;
+    cBar_state = UP;
+    step = 0;
   }
   else if (master.get_digital_new_press(DIGITAL_A)) {
-    cBar = LEFT;
+    cBar_state = LEFT;
   }
-  else if (master.get_digital_new_press(DIGITAL_B)) {
-    cBar = DOWN;
+  else if (master.get_digital(DIGITAL_B)) {
+    cBar_state = DOWN;
   }
 
   if (cBar_state == UP) {
-    cBar.move_absolute(1500, 200);
+    if (step == 0) {
+      cBar.move_absolute(1550, 200);
+      if (cBar.get_position() >= 990) {
+      //  step++;
+      }
+    }
+    if (step == 1) {
+      cBar.move_absolute(0, 200);
+    }
   }
   else if (cBar_state == LEFT) {
-    cBar.move_absolute(-100, 150);
+    cBar.move_absolute(-420, 100);
   }
   else if (cBar_state == DOWN) {
-    cBar.move_absolute(-790, 200);
+    if (master.get_digital(DIGITAL_B)) {
+      cBar = -127;
+    }
+    else {
+      cBar = 0;
+    }
   }
-  else {
-    cBar = 0;
-  }
+
+
 }
