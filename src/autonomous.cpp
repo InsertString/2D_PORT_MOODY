@@ -14,6 +14,21 @@ void autonomous() {
       case 1 :
       flag_auto(BLUE);
       break;
+      case 2 :
+
+      break;
+      case 3 :
+
+      break;
+      case 4 :
+      
+      break;
+      case 5 :
+
+      break;
+      case 6 :
+
+      break;
     }
     //*/
   }

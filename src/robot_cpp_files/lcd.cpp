@@ -1,11 +1,13 @@
 #include "main.h"
 #include "robot_includes/robot_includes.h"
 
-std::string auto_names[5] {
+std::string auto_names[7] {
   "FLAG RED",
   "FLAG BLUE",
   "PARK RED",
   "PARK BLUE",
+  "PARTNER RED"
+  "PARTNER BLUE"
   "SKILLS"
 };
 
@@ -100,7 +102,7 @@ void lcd_control() {
       page = 0;
   }
   else if (LCD_center_pressed()) {
-    if (selected_auto < 4)
+    if (selected_auto < 6)
       selected_auto++;
     else
       selected_auto = 0;
