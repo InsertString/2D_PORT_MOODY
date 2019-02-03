@@ -92,13 +92,15 @@ void flag_auto(int colour) {
     case 0 :
     ball_system.setIntakePower(127);
     lift.setFlipperPower(3);
-    i = chassis.PID_drive(1100, 100);
+    int bbbbb;
+    bbbbb = colour == RED ? 1050 : 1150;
+    i = chassis.PID_drive(1150, 100);
     if (i == COMPLETE || getTime(AUTO_STEP_TIMEOUT) > 2000) {
       advance_auto_step();
     }
     break;
     case 1 :
-    flipper.move_absolute(-280, 150);
+    flipper.move_absolute(-300, 100);
     if (flipper.get_position() < -100) {
       i = chassis.PID_drive(-300, 100);
     }
@@ -113,7 +115,7 @@ void flag_auto(int colour) {
     }
     break;
     case 3 :
-    i = chassis.PID_drive(-1150, 50);
+    i = chassis.PID_drive(-1070, 50);
     if (i == COMPLETE) {
       advance_auto_step();
     }
@@ -202,7 +204,7 @@ void flag_auto(int colour) {
     break;
     case 15 :
     ball_system.shoot();
-    chassis.PID_drive(-200, 80);
+    chassis.PID_drive(-300, 80);
     break;
   }
 }

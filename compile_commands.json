@@ -238,11 +238,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/robot_cpp_files/Lift_Systems.cpp.o",
-            "src\\robot_cpp_files\\Lift_Systems.cpp"
+            "bin/robot_cpp_files/lcd.cpp.o",
+            "src\\robot_cpp_files\\lcd.cpp"
         ],
         "directory": "C:\\Users\\Joshua\\Desktop\\2D Turning Point\\2D_PORT_MOODY",
-        "file": "src\\robot_cpp_files\\Lift_Systems.cpp"
+        "file": "src\\robot_cpp_files\\lcd.cpp"
     },
     {
         "arguments": [
@@ -308,11 +308,11 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/robot_cpp_files/lcd.cpp.o",
-            "src\\robot_cpp_files\\lcd.cpp"
+            "bin/robot_cpp_files/auto_fuctions.cpp.o",
+            "src\\robot_cpp_files\\auto_fuctions.cpp"
         ],
         "directory": "C:\\Users\\Joshua\\Desktop\\2D Turning Point\\2D_PORT_MOODY",
-        "file": "src\\robot_cpp_files\\lcd.cpp"
+        "file": "src\\robot_cpp_files\\auto_fuctions.cpp"
     },
     {
         "arguments": [
@@ -343,10 +343,10 @@
             "-fdiagnostics-color",
             "--std=gnu++17",
             "-o",
-            "bin/robot_cpp_files/auto_fuctions.cpp.o",
-            "src\\robot_cpp_files\\auto_fuctions.cpp"
+            "bin/robot_cpp_files/Lift_Systems.cpp.o",
+            "src\\robot_cpp_files\\Lift_Systems.cpp"
         ],
         "directory": "C:\\Users\\Joshua\\Desktop\\2D Turning Point\\2D_PORT_MOODY",
-        "file": "src\\robot_cpp_files\\auto_fuctions.cpp"
+        "file": "src\\robot_cpp_files\\Lift_Systems.cpp"
     }
 ]
